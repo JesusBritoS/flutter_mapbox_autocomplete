@@ -33,6 +33,8 @@ class MapBoxAutoCompleteWidget extends StatefulWidget {
   final String? country;
   
   final String? types;
+  
+  final List<double>? bbox;
 
   MapBoxAutoCompleteWidget({
     required this.apiKey,
@@ -44,6 +46,7 @@ class MapBoxAutoCompleteWidget extends StatefulWidget {
     this.limit,
     this.country,
     this.types,
+    this.bbox,
   });
 
   @override
@@ -69,6 +72,9 @@ class _MapBoxAutoCompleteWidgetState extends State<MapBoxAutoCompleteWidget> {
       }
       if (widget.types != null) {
         url += "&types=${widget.types}";
+      }
+      if (widget.bbox != null) {
+        url += "&bbox=${widget.bbox}";
       }
       final response = await http.get(Uri.parse(url));
       // print(response.body);
